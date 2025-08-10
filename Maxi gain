@@ -1,0 +1,32 @@
+import React, { useState } from "react";
+
+export default function App() { const [page, setPage] = useState("home");
+
+return ( <div className="min-h-screen bg-white text-black"> <div className="fixed bottom-0 w-full flex justify-around bg-yellow-300 p-2 rounded-t-2xl shadow-lg"> <Button label="🏠 Accueil" onClick={() => setPage("home")} /> <Button label="💰 VIP" onClick={() => setPage("vip")} /> <Button label="👥 Invités" onClick={() => setPage("invites")} /> <Button label="👤 Moi" onClick={() => setPage("me")} /> </div>
+
+<div className="p-4 pb-20">
+    {page === "home" && <Home />}
+    {page === "vip" && <Vip />}
+    {page === "invites" && <Invites />}
+    {page === "me" && <Me />}
+  </div>
+</div>
+
+); }
+
+function Button({ label, onClick }) { return ( <button
+className="flex-1 text-center text-sm font-bold text-black"
+onClick={onClick}
+> {label} </button> ); }
+
+function Home() { return <div className="text-xl font-bold">Bienvenue sur Maxi Gain</div>; }
+
+function Vip() { const offers = [ { price: 18, gain: 8 }, { price: 38, gain: 14 }, { price: 50, gain: 20 }, { price: 80, gain: 40 }, { price: 120, gain: 50 }, { price: 200, gain: 110 }, { price: 350, gain: 150 }, { price: 500, gain: 300 }, ]; return ( <div> <h2 className="text-lg font-bold mb-2">Offres VIP (durée : 7 jours)</h2> <ul className="space-y-2"> {offers.map((offer, i) => ( <li
+key={i}
+className="border border-yellow-400 p-2 rounded-xl shadow"
+> <div> <b>{offer.price}$</b> - Gagne <b>{offer.gain}$</b> par jour pendant 7 jours </div> </li> ))} </ul> </div> ); }
+
+function Invites() { return <div className="text-sm">Invitez des amis et gagnez des récompenses !</div>; }
+
+function Me() { return ( <div className="space-y-3"> <h2 className="text-lg font-bold">Mon Compte</h2> <button className="bg-yellow-300 px-4 py-2 rounded-full">Changer le mot de passe</button> <button className="bg-yellow-300 px-4 py-2 rounded-full">💸 Recharge</button> <button className="bg-yellow-300 px-4 py-2 rounded-full">🏧 Retrait</button> <button className="bg-yellow-300 px-4 py-2 rounded-full">👥 Invités</button> <button className="bg-yellow-300 px-4 py-2 rounded-full">📂 Dossiers financiers</button> <button className="bg-yellow-300 px-4 py-2 rounded-full">✅ Tâche</button> <div className="text-xs mt-4"> <b>Adresses Wallet :</b> <ul className="list-disc pl-5"> <li>USDT BEP20 : 0x080667fBC9175EDedF3dA6656CE9ff2A67C1D785</li> <li>USDT TRC20 : TFbMdoP1N9ePj3ZKwN5fWhTsnxhwMWvkcc</li> <li>TRX : TFbMdoP1N9ePj3ZKwN5fWhTsnxhwMWvkcc</li> <li>BNB BEP20 : 0x080667fBC9175EDedF3dA6656CE9ff2A67C1D785</li> <li>ETH : 0x080667fBC9175EDedF3dA6656CE9ff2A67C1D785</li> </ul> </div> </div> ); }
+
